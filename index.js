@@ -7,8 +7,8 @@ import Pushwoosh from 'pushwoosh-react-native-plugin';
 
 Pushwoosh.init({ 
   // Add your app code and Firebase sender ID here
-  "pw_appid" : "YOUR_APP_CODE",
-  "project_number" : "FIREBASE_SENDER_ID"
+  "pw_appid" : "2D44A-2842E",
+  "project_number" : "104623367221"
 });
 Pushwoosh.register();
 
