@@ -12,8 +12,30 @@ Pushwoosh.init({
 });
 Pushwoosh.register();
 
+// Badge management
+Pushwoosh.setApplicationIconBadgeNumber(0);
+
 DeviceEventEmitter.addListener('pushReceived', (e) => {
   console.warn("pushReceived: " + JSON.stringify(e));
+
+  // Badge number incremented and printed to the console
+  Pushwoosh.addToApplicationIconBadgeNumber(1);
+Pushwoosh.getApplicationIconBadgeNumber((badgeNumber) => {
+  console.warn("Application icon badge number = " + badgeNumber);
+
+  // Custom tag value set
+  Pushwoosh.setTags({ "Hello world" : "Hello"});
+  setTimeout(() => {
+    Pushwoosh.getTags(
+      function(tags) {
+        console.warn('Tags for the device: ' + JSON.stringify(tags));
+      },
+      function(error) {
+        console.warn('getTags error: ' + JSON.stringify(error));
+      }
+    );
+  }, 1000); 
+});
 });
 
 DeviceEventEmitter.addListener('pushOpened', (e) => {
