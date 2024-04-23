@@ -20,10 +20,12 @@ DeviceEventEmitter.addListener('pushReceived', (e) => {
 
   // Badge number incremented and printed to the console
   Pushwoosh.addToApplicationIconBadgeNumber(1);
-Pushwoosh.getApplicationIconBadgeNumber((badgeNumber) => {
+  Pushwoosh.getApplicationIconBadgeNumber((badgeNumber) => {
   console.warn("Application icon badge number = " + badgeNumber);
 
-  // Custom tag value set
+  // Custom tag value set and the result printed to the console.
+  // Timeout is used to make sure the final result is successfully returned from the DB
+  // Make sure to create the custom tag in the control panel
   Pushwoosh.setTags({ "Hello world" : "Hello"});
   setTimeout(() => {
     Pushwoosh.getTags(
@@ -35,6 +37,10 @@ Pushwoosh.getApplicationIconBadgeNumber((badgeNumber) => {
       }
     );
   }, 1000); 
+
+  // Custom event sent
+  // Usage: postEvent(event, attributes)
+  Pushwoosh.postEvent("Hello World", { "status" : "Completed"})
 });
 });
 
